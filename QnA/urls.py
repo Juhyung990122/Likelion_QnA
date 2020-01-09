@@ -6,8 +6,9 @@ from django.conf.urls.static import static
 
 router = DefaultRouter()
 router.register('question',views.QuestionVeiwSet)
-router.register('answer',views.AnswerViewSet)
 
 urlpatterns = [
     path('',include(router.urls)),
+    path('answer_list/<int:question_id>',views.Answer_list),
+    path('answer_create/<int:question_id>',views.Answer_create),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

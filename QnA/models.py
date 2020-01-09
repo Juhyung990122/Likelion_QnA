@@ -19,7 +19,7 @@ class Question(models.Model):
 
 class Answer(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL,default = 1,on_delete=models.CASCADE)
-    question_num = models.ForeignKey(Question, on_delete=models.CASCADE,null=True,related_name='answer')
+    question_num = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answer')
     date = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=1000)
     content = models.TextField()

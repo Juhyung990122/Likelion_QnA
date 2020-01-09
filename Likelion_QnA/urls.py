@@ -6,6 +6,7 @@ from rest_framework import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('QnA.urls')),
+    path('qna/',include('QnA.urls')),
+    path('signup/',include('SignUp.urls')),
     path('api-auth',include('rest_framework.urls'))
 ]
