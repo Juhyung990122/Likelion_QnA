@@ -10,3 +10,10 @@ from .serializer import MgmtUserSerializer
 class MgmtUserViewSet(viewsets.ModelViewSet):
     queryset = MgmtUser.objects.all().order_by('-id')
     serializer_class = MgmtUserSerializer
+    
+    #학번리스트(lion_list) 생성
+    list_q = MgmtUser.objects.get(year = 2019) #년도마다 수정
+    STUDENT_ID = list_q.student_id
+    lion_list=STUDENT_ID.split(',')
+
+

@@ -5,3 +5,5 @@ class MgmtUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = MgmtUser
         fields = ('year','student_id')
+
+   
