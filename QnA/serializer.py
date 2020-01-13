@@ -1,6 +1,7 @@
 from .models import Question
 from .models import Answer
 from django.contrib.auth.models import User
+from SignUp.models import LionUser
 from rest_framework import serializers
 
 class QuestionSerializer(serializers.ModelSerializer):
@@ -18,6 +19,8 @@ class AnswerSerializer(serializers.ModelSerializer):
         fields = ('author_name','question_num','title','date','content','image')
 
     def save(self, q, data):
-        my_user = User.objects.get(username=data['author'])
+        my_user = LionUser.objects.get(username=data['author'])
         q.answer.create(author=my_user, question_num=data['question_num'], date=data['date'], title=data['title'], content=data['content'])
         q.save()
+
+        

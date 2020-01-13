@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import viewsets
 
 from .models import Question, Answer
-from . serializer import QuestionSerializer,AnswerSerializer
+from .serializer import QuestionSerializer,AnswerSerializer
 
 class QuestionVeiwSet(viewsets.ModelViewSet):
     queryset = Question.objects.all().order_by('-id')
@@ -23,6 +23,7 @@ def Answer_list(request,question_id):
 
 @api_view(['POST'])
 def Answer_create(request,question_id):
+    #question_num은 일일히 입력중..date 는 null로 입력하면 알아서 
     if request.method == 'POST':
         q = Question.objects.get(pk=question_id)
         serializer = AnswerSerializer(data = request.data)
