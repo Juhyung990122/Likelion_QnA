@@ -9,4 +9,5 @@ router.register('mgmtuser',views.MgmtUserViewSet)
 
 urlpatterns = [
      path('',include(router.urls)),
+     path('signup_create/',views.signup_create),
 ]

@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 class LionUser(AbstractUser):
     year = models.IntegerField(default=0, null=False)
     student_id = models.IntegerField(default=0, null=False) 
+    permission = models.BooleanField(default=False)
 
 class MgmtUser(models.Model):
     # year에 현재년도, student_id에 가입한 회원 학번전체입력 -> 리스트상태로 저장 
