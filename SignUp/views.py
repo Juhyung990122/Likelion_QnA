@@ -17,8 +17,8 @@ class MgmtUserViewSet(viewsets.ModelViewSet):
 def signup_create(request):
     if request.method == 'POST':
         serializer = LionUserSerializer(data = request.data)
-        if serializer.is_valid(raise_exception=True): #전체입력 후 학번여부 확인으로 변경.
-            list_q = MgmtUser.objects.get(year = datetime.today().year) #년도마다 수정
+        if serializer.is_valid(raise_exception=True):
+            list_q = MgmtUser.objects.get(year = datetime.today().year) #현재년도의 기수만 가입가능.
             STUDENT_ID = list_q.student_id
             lion_list=STUDENT_ID.split(',')
             student_id = request.data.get('student_id')
@@ -30,3 +30,4 @@ def signup_create(request):
                 print('deny')
             return Response(serializer.data, status = status.HTTP_201_CREATED)
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
