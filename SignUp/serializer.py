@@ -9,6 +9,6 @@ class MgmtUserSerializer(serializers.ModelSerializer):
 class LionUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = LionUser
-        fields = ('year','student_id','permission')
+        fields = ('username','password','year','student_id','permission')
 
    
