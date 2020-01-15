@@ -10,5 +10,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('qna/',include('QnA.urls')),
     path('signup/',include('SignUp.urls')),
-    path('api-auth',include('rest_framework.urls'))
+    path('api-auth/',include('rest_framework.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
