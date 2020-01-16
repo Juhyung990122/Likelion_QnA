@@ -4,17 +4,25 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import viewsets
 from datetime import datetime
+from rest_framework.permissions import IsAdminUser
+from rest_framework.authentication import TokenAuthentication,SessionAuthentication
 
 from .models import MgmtUser
 from .serializer import MgmtUserSerializer,LionUserSerializer
 
+#staff 만 접근가능
+
 class MgmtUserViewSet(viewsets.ModelViewSet):
+    authentication_classes = [TokenAuthentication, SessionAuthentication]
+    permission_classes = [IsAdminUser]
     queryset = MgmtUser.objects.all().order_by('-id')
     serializer_class = MgmtUserSerializer
    
 
 @api_view(['POST'])
 def signup_create(request):
+    authentication_classes = [TokenAuthentication, SessionAuthentication]
+    permission_classes = [IsAdminUser]
     if request.method == 'POST':
         serializer = LionUserSerializer(data = request.data)
         if serializer.is_valid(raise_exception=True):
