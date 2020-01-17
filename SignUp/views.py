@@ -40,7 +40,7 @@ def signup_create(request):
             student_id = request.data.get('student_id')
             if student_id in lion_list:
                 print('allow')
-                serializer.create_user(request.data)
+                serializer.create(request.data)
                 serializer.save()
             else:
                 print('deny')

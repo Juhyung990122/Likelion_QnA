@@ -11,9 +11,11 @@ class LionUserSerializer(serializers.ModelSerializer):
         model = LionUser
         fields = ('username','password','year','student_id','permission')
 
-    def create_user(self, validated_data):
-        user = super().create(validated_data)
-        user.name = validated_data['username']
+    def create(self, validated_data):
+        user = LionUser(
+            username= validated_data['username'],
+            student_id = validated_data['student_id'],
+            year = validated_data['year'],
+            permission = validated_data['permission'])
         user.set_password(validated_data['password'])
-        user = user.save()
         return user
