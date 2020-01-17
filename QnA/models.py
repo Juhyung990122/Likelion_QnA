@@ -12,7 +12,6 @@ class Question(models.Model):
     class Meta:
         ordering = ['-id']
 
-    @property
     def views_counter(self):
         self.views_num = self.views_num + 1
         self.save()

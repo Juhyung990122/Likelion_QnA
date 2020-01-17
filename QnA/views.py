@@ -19,19 +19,20 @@ class QuestionVeiwSet(viewsets.ModelViewSet):
     def perform_create(self,serializer):
         serializer.save(author = self.request.user)
 
+
+
 @api_view(['GET'])
 def Answer_list(request,question_id):
     authentication_classes = [TokenAuthentication, SessionAuthentication]
-    permission_classes = [IsAuthenticated]
-    if request.method == 'GET':
-        queryset = Answer.objects.all()
+    if request.method == 'GET'and request.user.is_authenticated :
+        queryset = Answer.objects.filter(question_num=question_id)
         serializer = AnswerSerializer(queryset, many = True)
         return Response(serializer.data)
+    return Response(status = status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def Answer_create(request,question_id):
     authentication_classes = [TokenAuthentication, SessionAuthentication]
-    permission_classes = [IsAuthenticated] #사용자 전체가 질문 답변 가능.
     '''{
 	"author":"user3",
 	"date":"null",
@@ -39,7 +40,7 @@ def Answer_create(request,question_id):
 	"title": "answer",
 	"content": "answer"
     } '''
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user.is_authenticated : #username 자동설정으로 변경하기!
         q = Question.objects.get(pk=question_id)
         serializer = AnswerSerializer(data = request.data)
         if serializer.is_valid(raise_exception=True):
