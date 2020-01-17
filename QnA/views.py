@@ -22,7 +22,7 @@ class QuestionVeiwSet(viewsets.ModelViewSet):
 @api_view(['GET'])
 def Answer_list(request,question_id):
     authentication_classes = [TokenAuthentication, SessionAuthentication]
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAuthenticated]
     if request.method == 'GET':
         queryset = Answer.objects.all()
         serializer = AnswerSerializer(queryset, many = True)
@@ -31,7 +31,7 @@ def Answer_list(request,question_id):
 @api_view(['POST'])
 def Answer_create(request,question_id):
     authentication_classes = [TokenAuthentication, SessionAuthentication]
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAuthenticated] #사용자 전체가 질문 답변 가능.
     '''{
 	"author":"user3",
 	"date":"null",

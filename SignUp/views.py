@@ -41,7 +41,6 @@ def signup_create(request):
             if student_id in lion_list:
                 print('allow')
                 serializer.create(request.data)
-                serializer.save()
             else:
                 print('deny')
             return Response(serializer.data, status = status.HTTP_201_CREATED)

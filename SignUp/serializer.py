@@ -18,4 +18,5 @@ class LionUserSerializer(serializers.ModelSerializer):
             year = validated_data['year'],
             permission = validated_data['permission'])
         user.set_password(validated_data['password'])
+        user.save()
         return user
