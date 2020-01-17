@@ -16,8 +16,9 @@ class QuestionVeiwSet(viewsets.ModelViewSet):
     queryset = Question.objects.all().order_by('-id')
     serializer_class = QuestionSerializer
 
-    #def perform_create(self,serializer):
-        #serializer.save(author = self.request.user)
+
+    def perform_create(self,serializer):
+        serializer.save(author = self.request.user)
 
 @api_view(['GET'])
 def Answer_list(request,question_id):

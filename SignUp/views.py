@@ -30,7 +30,6 @@ def signup_create(request):
             STUDENT_ID = list_q.student_id
             lion_list=STUDENT_ID.split(',')
             student_id = request.data.get('student_id')
-            print(lion_list)
             if student_id in lion_list:
                 print('allow')
                 serializer.save()
