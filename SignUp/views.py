@@ -6,8 +6,7 @@ from rest_framework import viewsets
 from datetime import datetime
 from rest_framework.permissions import IsAdminUser
 from rest_framework.authentication import TokenAuthentication,SessionAuthentication
-
-from .models import MgmtUser
+from .models import MgmtUser,LionUser
 from .serializer import MgmtUserSerializer,LionUserSerializer
 
 #staff 만 접근가능
@@ -21,6 +20,15 @@ class MgmtUserViewSet(viewsets.ModelViewSet):
 
 @api_view(['POST'])
 def signup_create(request):
+    '''
+    {
+        "username":"name",
+        "password":"asdf",
+        "year":2020,
+        "student_id":"12345",
+        "permission":"False"
+    }
+    '''
     authentication_classes = [TokenAuthentication, SessionAuthentication]
     permission_classes = [IsAdminUser]
     if request.method == 'POST':
@@ -32,6 +40,7 @@ def signup_create(request):
             student_id = request.data.get('student_id')
             if student_id in lion_list:
                 print('allow')
+                serializer.create_user(request.data)
                 serializer.save()
             else:
                 print('deny')
