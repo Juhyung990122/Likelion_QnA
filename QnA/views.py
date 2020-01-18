@@ -24,12 +24,14 @@ class QuestionVeiwSet(viewsets.ModelViewSet):
 @api_view(['GET'])
 def Answer_list(request,question_id):
     authentication_classes = [TokenAuthentication, SessionAuthentication]
-    if request.method == 'GET'and request.user.is_authenticated :
-        queryset = Answer.objects.filter(question_num=question_id)
-        serializer = AnswerSerializer(queryset, many = True)
-        return Response(serializer.data)
-    return Response(status = status.HTTP_400_BAD_REQUEST)
-
+    if request.user.is_authenticated:
+        if request.method == 'GET' :
+            queryset = Answer.objects.filter(question_num=question_id)
+            serializer = AnswerSerializer(queryset, many = True)
+            return Response(serializer.data, status = status.HTTP_201_CREATED)
+        return Response(serializer.errors,status = status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response(status = status.HTTP_400_BAD_REQUEST)
 @api_view(['POST'])
 def Answer_create(request,question_id):
     authentication_classes = [TokenAuthentication, SessionAuthentication]
@@ -40,11 +42,14 @@ def Answer_create(request,question_id):
 	"title": "answer",
 	"content": "answer"
     } '''
-    if request.method == 'POST' and request.user.is_authenticated : #username 자동설정으로 변경하기!
-        q = Question.objects.get(pk=question_id)
-        serializer = AnswerSerializer(data = request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save(q, request.data)
-            return Response(serializer.data, status = status.HTTP_201_CREATED)
-        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+    if request.user.is_authenticated:
+        if request.method == 'POST' : #username 자동설정으로 변경하기!
+            q = Question.objects.get(pk=question_id)
+            serializer = AnswerSerializer(data = request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save(q, request.data)
+                return Response(serializer.data, status = status.HTTP_201_CREATED)
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)    
+    else:
+        return Response(status = status.HTTP_400_BAD_REQUEST)
 
