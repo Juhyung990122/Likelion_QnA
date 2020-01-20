@@ -1,32 +1,10 @@
 
-#logo{
-  width: 40px;
-  height: 40px;
-  margin-left:10px;
-  margin-right:5px;
-  padding-top:20px;
-  float: left;
-}
-
-#smu_likelion_qna{
-   padding-top:10px;
-   float: left;
-}
-
-#menu{
-  float: right;
-}
-li{
-  list-style: none;
-  float:right;
-  margin:10px;
-}
 
 .background{
   clear:left;
   height: 90vh;
   width: 101vw;
-  background-image: url(./images/background.png);
+  background-image: url(../images/background.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -76,8 +54,8 @@ li{
   bottom: 0;
   left: 0;
   margin-top: 10px;
-  margin-left: 20px;
-  width: 100vw;
+  margin-left: 39px;
+  width: 97vw;
   height: 350px;
   text-align: center;
 }

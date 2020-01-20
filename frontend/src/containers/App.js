@@ -1,21 +1,17 @@
-import React from 'react';
-import './App.css';
-import logo from './images/logo.png'
+import React, { Component } from 'react';
+import '../components/App.css';
+import Header from '../components/Header';
 
 
-function Index() {
+class Index extends Component {
+  render(){
   return (
     <div className="index">
-      <div className="Header">
-        <img id='logo' src = {logo}></img>
-        <h3 id ='smu_likelion_qna'>SMU LIKELION_QNA</h3>
-        <ul id = 'menu'>
-          <li>Notice</li>
-          <li>QnA</li>
-          <li>Login</li>
-          <li>Signup</li>
-        </ul>
+      <div>
+        <Header/>
+        {this.props.children}
       </div>
+      
       <div className='background'>
       </div>
       <div className="scroll-downs">
@@ -37,7 +33,8 @@ function Index() {
       </div>
 
     </div>
-  );
+    );
+  }
 }
 
 export default Index;

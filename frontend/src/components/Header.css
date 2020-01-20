@@ -1,0 +1,23 @@
+#logo{
+    width: 40px;
+    height: 40px;
+    margin-left:10px;
+    margin-right:5px;
+    padding-top:20px;
+    float: left;
+  }
+  
+  #smu_likelion_qna{
+     padding-top:10px;
+     float: left;
+  }
+  
+  #menu{
+    float: right;
+  }
+  
+  .menu-item{
+    float:right;
+    margin:10px;
+    margin-top: 25px;
+  }
