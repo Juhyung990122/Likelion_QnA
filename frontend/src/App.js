@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import logo from './images/logo.png'
-import background from './images/background.png'
 
-function App() {
+
+function Index() {
   return (
     <div className="index">
       <div className="Header">
@@ -18,13 +18,26 @@ function App() {
       </div>
       <div className='background'>
       </div>
-      <div class="scroll-downs">
-  <div class="mousey">
-    <div class="scroller"></div>
-  </div>
-</div>
+      <div className="scroll-downs">
+        <div className="mousey">
+          <div className="scroller">
+          </div>
+        </div>
+       </div>
+      <div className='Notice'>
+        <h4 id = 'notice'>Notice</h4>
+        <p>
+          <br/>
+          1.내용을 입력하세요
+          <br/>
+          2.내용을 입력하세요
+          <br/>
+          3.내용을 입력하세요
+        </p>
+      </div>
+
     </div>
   );
 }
 
-export default App;
+export default Index;
