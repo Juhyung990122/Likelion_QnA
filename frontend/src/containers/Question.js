@@ -1,9 +1,10 @@
 import React from 'react';
+import Content from '../components/Content'
 
 const Question = () => {
     return (
         <div>
-            <h3>Question</h3>
+            <Content>Question</Content>
         </div>
     );
 };

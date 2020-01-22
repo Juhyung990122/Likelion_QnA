@@ -20,7 +20,7 @@ const Header = () => {
                 <MenuItem>Signup</MenuItem>
                 <MenuItem>Login</MenuItem>
                 <MenuItem to={'/question'} >QnA</MenuItem>
-                <MenuItem>Notice</MenuItem>
+                <MenuItem to={'/notice'}>Notice</MenuItem>
             </div>
         </div>
     );
