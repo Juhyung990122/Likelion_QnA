@@ -4,7 +4,9 @@ import Content from '../components/Content'
 const Question = () => {
     return (
         <div>
-            <Content>Question</Content>
+            <Content>
+                Qeustion
+            </Content>
         </div>
     );
 };
