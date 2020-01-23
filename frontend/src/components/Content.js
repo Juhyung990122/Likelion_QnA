@@ -3,7 +3,7 @@ import './Content.css';
 
 const Content = ({children}) => {
     return(
-        <div classNmae = 'content'>
+        <div className = 'content'>
             {children}
         </div>
     );

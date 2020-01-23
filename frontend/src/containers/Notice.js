@@ -1,5 +1,5 @@
 import React from 'react';
-import '../components/Notice.css';
+import '../components/containers_css/Notice.css';
 import Content from '../components/Content';
 
 

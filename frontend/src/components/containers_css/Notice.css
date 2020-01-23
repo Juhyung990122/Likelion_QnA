@@ -47,7 +47,7 @@
     100% { transform: translateY(15px); opacity: 0;}
   }
   
-  .Notice{
+  .Notice_content{
     display:inline-block;
     top: 0;
     right: 0;

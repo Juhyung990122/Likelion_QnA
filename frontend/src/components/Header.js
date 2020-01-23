@@ -16,7 +16,7 @@ const Header = () => {
             <img src = {logo} id='logo' alt='logo'></img>
             <h3 id ='smu_likelion_qna'>SMU LIKELION_QNA</h3>
             </div>
-            <div className='menu' id = 'menu'>
+            <div className='menu' id ='menu'>
                 <MenuItem>Signup</MenuItem>
                 <MenuItem>Login</MenuItem>
                 <MenuItem to={'/question'} >QnA</MenuItem>
