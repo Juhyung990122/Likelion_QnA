@@ -10,15 +10,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open('secret.json', 'r') as f:
-    secret = json.loads(f.read())
-
-def get_secret(setting, secret=secret):
-    try:
-        return secret[setting]
-    except:
-        msg = "Set key '{0}' in secret.json".format(setting)
-        raise ImproperlyConfigured(error_msg)
 
 import os
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'pj%+nhp=^!g)g*togtmy3#zp@qv)$aw*ceq_0_+kani4(o$_x4')
