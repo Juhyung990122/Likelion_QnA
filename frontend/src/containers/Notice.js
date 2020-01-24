@@ -1,11 +1,12 @@
 import React from 'react';
 import '../components/containers_css/Notice.css';
 import Content from '../components/Content';
+import Header from '../components/Header';
 
 
 const Notice = () => {
     return (
-        <div>
+    <div>
            <Content>
                 <div className='background'>
                 </div>

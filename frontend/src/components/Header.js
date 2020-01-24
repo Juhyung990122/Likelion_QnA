@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import './Header.css';
-import logo from '../images/logo.png';
+import logo from './images/logo.png';
 
 const MenuItem = ({active, children, to}) => (
     <Link to={to} className="menu-item">
@@ -14,7 +14,7 @@ const Header = () => {
         <div className="Header">
             <div className="logo">
             <img src = {logo} id='logo' alt='logo'></img>
-            <h3 id ='smu_likelion_qna'>SMU LIKELION_QNA</h3>
+            <h3 id ='smu_likelion_qna'><a href='/'>SMU LIKELION_QNA</a></h3>
             </div>
             <div className='menu' id ='menu'>
                 <MenuItem>Signup</MenuItem>
