@@ -20,7 +20,8 @@ def get_secret(setting, secret=secret):
         msg = "Set key '{0}' in secret.json".format(setting)
         raise ImproperlyConfigured(error_msg)
 
-SECRET_KEY = get_secret('SECRET_KEY')
+import os
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'pj%+nhp=^!g)g*togtmy3#zp@qv)$aw*ceq_0_+kani4(o$_x4')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
