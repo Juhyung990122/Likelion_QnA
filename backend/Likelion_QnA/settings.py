@@ -23,7 +23,7 @@ def get_secret(setting, secret=secret):
 SECRET_KEY = get_secret('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = bool( os.environ.get('DJANGO_DEBUG',True))
 
 ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com']
 
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'QnA',
     'SignUp',
     'rest_framework.authtoken',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+
 ]
 
 MIDDLEWARE = [
