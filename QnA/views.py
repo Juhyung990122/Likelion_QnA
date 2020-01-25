@@ -12,7 +12,7 @@ from .serializer import QuestionSerializer,AnswerSerializer
 class QuestionVeiwSet(viewsets.ModelViewSet):
     #로그인유저만 question crud 가능
     authentication_classes = [TokenAuthentication, SessionAuthentication]
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
     queryset = Question.objects.all().order_by('-id')
     serializer_class = QuestionSerializer
 
