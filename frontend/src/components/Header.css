@@ -10,6 +10,12 @@
   #smu_likelion_qna{
      padding-top:10px;
      float: left;
+     
+  }
+
+  a:link,a:hover,a:visited{
+    color:black;
+    text-decoration: black;
   }
   
   #menu{
