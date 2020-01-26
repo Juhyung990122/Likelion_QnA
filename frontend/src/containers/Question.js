@@ -5,70 +5,36 @@ import * as service from '../qna';
 
 class Question extends Component {
     
-    constructor(props){
-        super();
-        this.state = {
-            pk: 1,
-            fetching : false,
-            question:{
-                author_name: null,
-                title: null,
-                date: null,
-                content: null,
-                image: null,
-                views_num: 0
-            }
-        };
+    state = {
+        questions : []
     }
 
-    fetchQuestionInfo = async(question_id) => {
-        
-        this.setState({
-            fetching:true
-        });
-        
-        const info = await Promise.all([
-            service.getQeustion(question_id)
-        ]);
-
-        const {
-            pk,
-            author_name,
-            title,
-            date,
-            content,
-            image,
-            views_num} = info[0].data; 
-
-        this.setState({
-            pk,
-            question:{
-                author_name,
-                title,
-                date,
-                content,
-                image,
-                views_num
-            },
-            fetching:false
-        });
-
-        const question = await service.getQeustion(question_id);
-        console.log(question);
-    }
-    
-    componentDidMount() {
-        this.fetchQuestionInfo(3);
+    async componentDidMount() {
+        try {
+            const res = await fetch('http://127.0.0.1:8000/qna/question/?page=1');
+            const question = await res.json();
+            this.setState({
+                question
+            });
+        } catch (e) {
+            console.log(e);
+        }
     }
     
     render() {
         const {question} = this.state
         return (
             <div>
-                <Content>
-                {question.title}
-                {question.content}
-                </Content>
+                
+                
+                {this.state.posts.map(item => (
+                    <div key={item.id}>
+                        <h1>{item.title}</h1>
+                        <span>{item.content}</span>
+                    </div>
+                ))}
+
+ 
             </div>
         );
     }
