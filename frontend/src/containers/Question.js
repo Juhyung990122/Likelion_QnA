@@ -3,41 +3,48 @@ import Content from '../components/Content';
 import * as service from '../qna';
 
 
-class Question extends Component {
-    
+class QuestionList extends Component {
+    id = 1
     state = {
-        questions : []
+        fetching: false,
+        questionlist:[    
+            
+        ]
+
     }
 
-    async componentDidMount() {
-        try {
-            const res = await fetch('http://127.0.0.1:8000/qna/question/?page=1');
-            const question = await res.json();
-            this.setState({
-                question
-            });
-        } catch (e) {
-            console.log(e);
-        }
+    fetchQuestionInfo = async(page_num) => { 
+        this.setState({
+            fetching:true
+        })
+
+        const questionlistinfo = await service.getQeustionList(page_num);
+
+        this.setState({
+            questionlist: questionlistinfo.data.results,
+            fetching:false
+        })
+        const questionlist2 = await service.getQeustionList(page_num);
+        console.log(questionlist2);
+    }
+    
+    componentDidMount() {
+        this.fetchQuestionInfo(1);
+        
     }
     
     render() {
-        const {question} = this.state
         return (
             <div>
-                
-                
-                {this.state.posts.map(item => (
-                    <div key={item.id}>
-                        <h1>{item.title}</h1>
-                        <span>{item.content}</span>
-                    </div>
-                ))}
-
- 
+                <Content>            
+                    
+  
+                </Content>
             </div>
         );
     }
 }
 
-export default Question;
+
+
+export default QuestionList;
