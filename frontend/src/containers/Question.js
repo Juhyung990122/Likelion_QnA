@@ -7,10 +7,9 @@ class QuestionList extends Component {
     id = 1
     state = {
         fetching: false,
-        questionlist:[    
-            
-        ]
-
+        questionlist:[     
+        ],
+        keyword:''
     }
 
     fetchQuestionInfo = async(page_num) => { 
@@ -20,25 +19,29 @@ class QuestionList extends Component {
 
         const questionlistinfo = await service.getQeustionList(page_num);
 
+        const questionlist = questionlistinfo.data.results
+
         this.setState({
-            questionlist: questionlistinfo.data.results,
+            questionlist,
             fetching:false
         })
-        const questionlist2 = await service.getQeustionList(page_num);
-        console.log(questionlist2);
+        
     }
     
     componentDidMount() {
         this.fetchQuestionInfo(1);
         
     }
-    
+
+   
     render() {
+        const question = this.state
+
         return (
             <div>
-                <Content>            
+                <Content>   
                     
-  
+                    <li>{JSON.stringify(question.questionlist)}</li>
                 </Content>
             </div>
         );
