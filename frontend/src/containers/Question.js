@@ -7,7 +7,13 @@ class QuestionList extends Component {
     id = 1
     state = {
         fetching: false,
-        questionlist:[     
+        questionlist:[   
+            {
+            author_name: null,
+            title: null,
+            date: null,
+            image: null,
+            }  
         ],
         keyword:''
     }
@@ -36,12 +42,15 @@ class QuestionList extends Component {
    
     render() {
         const question = this.state
-
+        var questionList = question.questionlist;
+        console.log(questionList)
         return (
             <div>
-                <Content>   
-                    
-                    <li>{JSON.stringify(question.questionlist)}</li>
+                <Content>
+                <li>{questionList[0].title}</li>
+                <li>{questionList[0].title}</li>
+                <li>{questionList[0].title}</li>
+                <li>{questionList[0].title}</li>
                 </Content>
             </div>
         );
