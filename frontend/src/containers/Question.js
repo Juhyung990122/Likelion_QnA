@@ -3,15 +3,17 @@ import Content from '../components/Content';
 import * as service from '../qna';
 import '../components/containers_css/Question.css';
 
-
 class QuestionList extends Component {
+    
     constructor(props){
         super(props);
         this.state = {
+
             page_num : 1,
             fetching: false,
             questionlist:[   
                 {
+                    
                 author_name: null,
                 title: null,
                 date: null,
@@ -45,10 +47,9 @@ class QuestionList extends Component {
         }
         this.nextpage = this.nextpage.bind(this);
         this.prevpage = this.prevpage.bind(this);
+
     }
-    id = 1
-
-
+    
     fetchQuestionInfo = async(page_num) => { 
         this.setState({
             fetching:true
@@ -59,10 +60,12 @@ class QuestionList extends Component {
         const questionlist = questionlistinfo.data.results
 
         this.setState({
+
             page_num,
             questionlist,
             fetching:false
         })
+
     }
     
     componentDidMount() {
@@ -73,6 +76,8 @@ class QuestionList extends Component {
         this.fetchQuestionInfo(this.state.page_num+1); 
     }
 
+
+
     prevpage(){
         if(this.state.page_num <= 1){
             alert("첫페이지입니다.")
@@ -82,39 +87,56 @@ class QuestionList extends Component {
         }
             
     }
+
    
+    
+
     render() {
         const question = this.state
         var questionList = question.questionlist;
         return (
             <div>
                 <Content>
+                    <div className='question_photo'>
+
+                    </div>
+                    <div className='page_title'>
+                    </div>
+                    <div>
+                    <button id='create_button'>질문하기</button>
+                    </div>
+                    
                     <div className='table'>
                     <table border='1'>
-                        <tr >
-                        <td>이미지</td><td>제목</td><td>등록일</td>
+                        <thead>
+                        <tr>
+                        <td>글쓴이</td><td>제목</td><td>등록일</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        <td>{questionList[0].author_name}</td><td>{questionList[0].title}</td><td>{questionList[0].date}</td>
                         </tr>
                         <tr>
-                        <td><img href={questionList[0].image}/></td><td>{questionList[0].title}</td><td>{questionList[0].date}</td>
+                        <td>{questionList[1].author_name}</td><td>{questionList[1].title}</td><td>{questionList[1].date}</td>
                         </tr>
                         <tr>
-                        <td>이미지</td><td>{questionList[1].title}</td><td>{questionList[1].date}</td>
+                        <td>{questionList[2].author_name}</td><td>{questionList[2].title}</td><td>{questionList[2].date}</td>
                         </tr>
                         <tr>
-                        <td>이미지</td><td>{questionList[2].title}</td><td>{questionList[2].date}</td>
+                        <td>{questionList[3].author_name}</td><td>{questionList[3].title}</td><td>{questionList[3].date}</td>
                         </tr>
                         <tr>
-                        <td>이미지</td><td>{questionList[3].title}</td><td>{questionList[3].date}</td>
+                        <td>{questionList[4].author_name}</td><td>{questionList[4].title}</td><td>{questionList[4].date}</td>
                         </tr>
-                        <tr>
-                        <td>이미지</td><td>{questionList[4].title}</td><td>{questionList[4].date}</td>
-                        </tr>
+                        </tbody>
+                       
 
                     </table>
                     </div>
                     <div className='pagination'>
-                    <button onClick={this.prevpage}>Prev</button>
-                    <button onClick={this.nextpage}>Next</button>
+                    <button id='prevbutton'onClick={this.prevpage}>Prev</button>
+                    <button id='nextbutton'onClick={this.nextpage}>Next</button>
                     </div>
                     
                 </Content>
