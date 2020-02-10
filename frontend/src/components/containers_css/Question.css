@@ -1,0 +1,18 @@
+table{
+    margin-top: 200px;
+    margin-left: 39px;
+    margin-right:39px;
+    width: 94vw;
+    height: 350px;
+    text-align: center;
+
+    border-style: none;
+    border-color: black;
+
+
+    table-layout: fixed;
+}
+
+.pagination{
+    text-align: center;
+}
