@@ -1,7 +1,16 @@
 import React,{Component} from 'react';
+import { Link } from 'react-router';
 import Content from '../components/Content';
 import * as service from '../qna';
 import '../components/containers_css/Question.css';
+
+
+const DetailItem = ({active, children, to}) => (
+    <Link to={to} className="detail-item">
+            {children}
+    </Link>
+)
+
 
 class QuestionList extends Component {
     
@@ -13,31 +22,35 @@ class QuestionList extends Component {
             fetching: false,
             questionlist:[   
                 {
-                    
-                author_name: null,
-                title: null,
-                date: null,
-                image: null,
+                    pk: null,
+                    author_name: null,
+                    title: null,
+                    date: null,
+                    image: null,
                 },  
-                {
+                {   
+                    pk: null,
                     author_name: null,
                     title: null,
                     date: null,
                     image: null,
                 },
-                {
+                {   
+                    pk: null,
                     author_name: null,
                     title: null,
                     date: null,
                     image: null,
                 }, 
-                {
+                {   
+                    pk: null,
                     author_name: null,
                     title: null,
                     date: null,
                     image: null,
                 }, 
-                {
+                {   
+                    pk: null,
                     author_name: null,
                     title: null,
                     date: null,
@@ -65,7 +78,6 @@ class QuestionList extends Component {
             questionlist,
             fetching:false
         })
-
     }
     
     componentDidMount() {
@@ -88,7 +100,9 @@ class QuestionList extends Component {
             
     }
 
-   
+   detail(){
+       const postobject = this.fetchQuestionInfo(this.state.questionlist.filter())
+   }
     
 
     render() {
@@ -115,19 +129,19 @@ class QuestionList extends Component {
                         </thead>
                         <tbody>
                         <tr>
-                        <td>{questionList[0].author_name}</td><td>{questionList[0].title}</td><td>{questionList[0].date}</td>
+                        <td>{questionList[0].author_name}</td><td><DetailItem to={'question/:id'}>{questionList[0].title}</DetailItem></td><td>{questionList[0].date}</td>
                         </tr>
                         <tr>
-                        <td>{questionList[1].author_name}</td><td>{questionList[1].title}</td><td>{questionList[1].date}</td>
+                        <td>{questionList[1].author_name}</td><td><DetailItem to={'question/:id'}>{questionList[1].title}</DetailItem></td><td>{questionList[1].date}</td>
                         </tr>
                         <tr>
-                        <td>{questionList[2].author_name}</td><td>{questionList[2].title}</td><td>{questionList[2].date}</td>
+                        <td>{questionList[2].author_name}</td><td><DetailItem to={'question/:id'}>{questionList[2].title}</DetailItem></td><td>{questionList[2].date}</td>
                         </tr>
                         <tr>
-                        <td>{questionList[3].author_name}</td><td>{questionList[3].title}</td><td>{questionList[3].date}</td>
+                        <td>{questionList[3].author_name}</td><td><DetailItem to={'question/:id'}>{questionList[3].title}</DetailItem></td><td>{questionList[3].date}</td>
                         </tr>
                         <tr>
-                        <td>{questionList[4].author_name}</td><td>{questionList[4].title}</td><td>{questionList[4].date}</td>
+                        <td>{questionList[4].author_name}</td><td><DetailItem to={'question/:id'}>{questionList[4].title}</DetailItem></td><td>{questionList[4].date}</td>
                         </tr>
                         </tbody>
                        
