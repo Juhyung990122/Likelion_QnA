@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import Content from '../components/Content';
 import * as service from '../qna';
-import { Redirect } from 'react-router';
+import '../components/containers_css/Question_detail.css';
        
 
 class Question_detail extends Component {
@@ -66,8 +66,23 @@ class Question_detail extends Component {
         return (
             <div>
                 <Content>
+                <div className='question_photo'>
+                </div>
+                <div className='page_title'>
+                </div>
+                <div className='question_title'>
                 {question.title}
+                </div>
+                <div className='question_date'>
+                {question.date}
+                </div>
+                <div className='question_image_div'>
+                <img src={question.image} id='question_image' ></img>
+                </div>
+                <div className='question_content'>
                 {question.content}
+                </div>
+                
                 </Content>
             </div>
           
