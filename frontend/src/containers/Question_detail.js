@@ -1,15 +1,17 @@
 import React,{Component} from 'react';
 import Content from '../components/Content';
 import * as service from '../qna';
+import { Redirect } from 'react-router';
+       
 
 class Question_detail extends Component {
-    
     constructor(props){
-        super();
+        console.log(props)
+        super(props);
         this.state = {
-            pk: 1,
             fetching : false,
             question:{
+                pk: props.params.id,
                 author_name: null,
                 title: null,
                 date: null,
@@ -21,14 +23,12 @@ class Question_detail extends Component {
     }
 
     fetchQuestionInfo = async(question_id) => {
-        
         this.setState({
             fetching:true
         });
         
-        const info = await Promise.all([
-            service.getQeustion(question_id)
-        ]);
+        const info = await service.getQeustion(question_id)
+        const question = info.data
 
         const {
             pk,
@@ -37,11 +37,11 @@ class Question_detail extends Component {
             date,
             content,
             image,
-            views_num} = info[0].data; 
+            views_num} = question; 
 
         this.setState({
-            pk,
             question:{
+                pk,
                 author_name,
                 title,
                 date,
@@ -52,16 +52,17 @@ class Question_detail extends Component {
             fetching:false
         });
 
-        const question = await service.getQeustion(question_id);
-        console.log(question);
     }
-    
+
+
     componentDidMount() {
-        this.fetchQuestionInfo(3);
+        this.fetchQuestionInfo(this.state.question.pk)
     }
+
     
     render() {
-        const {question} = this.state
+        const {question} = this.state;
+
         return (
             <div>
                 <Content>
@@ -69,6 +70,7 @@ class Question_detail extends Component {
                 {question.content}
                 </Content>
             </div>
+          
         );
     }
 }

@@ -99,10 +99,6 @@ class QuestionList extends Component {
         }
             
     }
-
-   detail(){
-       const postobject = this.fetchQuestionInfo(this.state.questionlist.filter())
-   }
     
 
     render() {
@@ -129,19 +125,19 @@ class QuestionList extends Component {
                         </thead>
                         <tbody>
                         <tr>
-                        <td>{questionList[0].author_name}</td><td><DetailItem to={'question/:id'}>{questionList[0].title}</DetailItem></td><td>{questionList[0].date}</td>
+                        <td>{questionList[0].author_name}</td><td><DetailItem to={'question/'+questionList[0].pk}>{questionList[0].title}</DetailItem></td><td>{questionList[0].date}</td>
                         </tr>
                         <tr>
-                        <td>{questionList[1].author_name}</td><td><DetailItem to={'question/:id'}>{questionList[1].title}</DetailItem></td><td>{questionList[1].date}</td>
+                        <td>{questionList[1].author_name}</td><td><DetailItem to={'question/'+questionList[1].pk}>{questionList[1].title}</DetailItem></td><td>{questionList[1].date}</td>
                         </tr>
                         <tr>
-                        <td>{questionList[2].author_name}</td><td><DetailItem to={'question/:id'}>{questionList[2].title}</DetailItem></td><td>{questionList[2].date}</td>
+                        <td>{questionList[2].author_name}</td><td><DetailItem to={'question/'+questionList[2].pk}>{questionList[2].title}</DetailItem></td><td>{questionList[2].date}</td>
                         </tr>
                         <tr>
-                        <td>{questionList[3].author_name}</td><td><DetailItem to={'question/:id'}>{questionList[3].title}</DetailItem></td><td>{questionList[3].date}</td>
+                        <td>{questionList[3].author_name}</td><td><DetailItem to={'question/'+questionList[3].pk}>{questionList[3].title}</DetailItem></td><td>{questionList[3].date}</td>
                         </tr>
                         <tr>
-                        <td>{questionList[4].author_name}</td><td><DetailItem to={'question/:id'}>{questionList[4].title}</DetailItem></td><td>{questionList[4].date}</td>
+                        <td>{questionList[4].author_name}</td><td><DetailItem to={'question/'+questionList[4].pk}>{questionList[4].title}</DetailItem></td><td>{questionList[4].date}</td>
                         </tr>
                         </tbody>
                        
