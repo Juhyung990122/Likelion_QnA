@@ -23,15 +23,16 @@ class QuestionVeiwSet(viewsets.ModelViewSet):
 
 @api_view(['GET'])
 def Answer_list(request,question_id):
-    authentication_classes = [TokenAuthentication, SessionAuthentication]
-    if request.user.is_authenticated:
-        if request.method == 'GET' :
-            queryset = Answer.objects.filter(question_num=question_id)
-            serializer = AnswerSerializer(queryset, many = True)
-            return Response(serializer.data, status = status.HTTP_201_CREATED)
-        return Response(serializer.errors,status = status.HTTP_400_BAD_REQUEST)
+    #authentication_classes = [TokenAuthentication, SessionAuthentication]
+    #if request.user.is_authenticated:
+    if request.method == 'GET' :
+        queryset = Answer.objects.filter(question_num=question_id)
+        serializer = AnswerSerializer(queryset, many = True)
+        return Response(serializer.data, status = status.HTTP_201_CREATED)
     else:
-        return Response(status = status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors,status = status.HTTP_400_BAD_REQUEST)    
+    #else:
+        #return Response(status = status.HTTP_400_BAD_REQUEST)
 @api_view(['POST'])
 def Answer_create(request,question_id):
     authentication_classes = [TokenAuthentication, SessionAuthentication]

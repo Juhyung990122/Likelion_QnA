@@ -6,7 +6,6 @@ import '../components/containers_css/Question_detail.css';
 
 class Question_detail extends Component {
     constructor(props){
-        console.log(props)
         super(props);
         this.state = {
             fetching : false,
@@ -18,6 +17,14 @@ class Question_detail extends Component {
                 content: null,
                 image: null,
                 views_num: 0
+            },
+            answer:{
+                question_num: props.params.id,
+                author_name: null,
+                title: null,
+                date: null,
+                content: null,
+                image: null
             }
         };
     }
@@ -26,9 +33,9 @@ class Question_detail extends Component {
         this.setState({
             fetching:true
         });
-        
-        const info = await service.getQeustion(question_id)
-        const question = info.data
+
+        const infoquestion = await service.getQeustion(question_id)
+        const question = infoquestion.data
 
         const {
             pk,
@@ -54,14 +61,48 @@ class Question_detail extends Component {
 
     }
 
+    fetchAnswerInfo = async(question_id) => {
+        this.setState({
+            fetching:true,
+        });
+
+        const infoanswer = await service.getAnswer(question_id)
+        const  answer= infoanswer.data
+        
+        const {
+            author_name,
+            question_num,
+            title,
+            date,
+            content,
+            image,
+            } = answer[0];
+            
+        this.setState({
+            answer:{
+                author_name,
+                question_num,
+                title,
+                date,
+                content,
+                image,
+            },
+            fetching:false
+        });
+       
+    }
 
     componentDidMount() {
         this.fetchQuestionInfo(this.state.question.pk)
+        this.fetchAnswerInfo(this.state.answer.question_num)
+        console.log('fetch')
+        
     }
 
     
     render() {
         const {question} = this.state;
+        const {answer} = this.state;
 
         return (
             <div>
@@ -81,6 +122,18 @@ class Question_detail extends Component {
                 </div>
                 <div className='question_content'>
                 {question.content}
+                </div>
+                <div className='answer_title'>
+                {answer.title}
+                </div>
+                <div className='answer_date'>
+                {answer.date}
+                </div>
+                <div className='answer_image_div'>
+                <img src={answer.image} id='answer_image' ></img>
+                </div>
+                <div className='answer_content'>
+                {answer.content}
                 </div>
                 
                 </Content>
