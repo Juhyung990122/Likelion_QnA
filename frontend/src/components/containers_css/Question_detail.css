@@ -1,3 +1,14 @@
+.answer_photo{
+    margin-top: 10px;
+    margin-left: 40px;
+    width: 250px;
+    height: 15vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-image: url(../images/answer_title.png);
+}
+
 .question_title,.answer_title{
     margin-top: 10px;
     margin-left: 45px;
@@ -24,4 +35,8 @@
 .question_content,.answer_content{
     margin-top: 10px;
     margin-left: 45px;
+}
+
+.footer{
+    margin-bottom: 100px;
 }

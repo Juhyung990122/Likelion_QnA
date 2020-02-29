@@ -8,7 +8,8 @@ class Question_detail extends Component {
     constructor(props){
         super(props);
         this.state = {
-            fetching : false,
+            question_fetching : false,
+            answer_fetching: false,
             question:{
                 pk: props.params.id,
                 author_name: null,
@@ -31,7 +32,7 @@ class Question_detail extends Component {
 
     fetchQuestionInfo = async(question_id) => {
         this.setState({
-            fetching:true
+            question_fetching:false
         });
 
         const infoquestion = await service.getQeustion(question_id)
@@ -56,19 +57,20 @@ class Question_detail extends Component {
                 image,
                 views_num
             },
-            fetching:false
+            question_fetching:true
         });
 
     }
 
     fetchAnswerInfo = async(question_id) => {
         this.setState({
-            fetching:true,
+            answer_fetching:false,
         });
 
         const infoanswer = await service.getAnswer(question_id)
+
+        if(infoanswer.data.length !== 0){
         const  answer= infoanswer.data
-        
         const {
             author_name,
             question_num,
@@ -87,9 +89,14 @@ class Question_detail extends Component {
                 content,
                 image,
             },
-            fetching:false
+            answer_fetching:true
         });
-       
+    }
+        else{
+            this.setState({
+                answer_fetching:false
+            });
+        }
     }
 
     componentDidMount() {
@@ -103,7 +110,7 @@ class Question_detail extends Component {
     render() {
         const {question} = this.state;
         const {answer} = this.state;
-
+        if(this.state.answer_fetching){
         return (
             <div>
                 <Content>
@@ -123,6 +130,8 @@ class Question_detail extends Component {
                 <div className='question_content'>
                 {question.content}
                 </div>
+                <div className='answer_photo'>
+                </div>
                 <div className='answer_title'>
                 {answer.title}
                 </div>
@@ -135,11 +144,39 @@ class Question_detail extends Component {
                 <div className='answer_content'>
                 {answer.content}
                 </div>
-                
+                <div className='footer'>
+                </div>
                 </Content>
             </div>
           
         );
+        }
+        else{
+            return(
+                <div>
+                <Content>
+                <div className='question_photo'>
+                </div>
+                <div className='page_title'>
+                </div>
+                <div className='question_title'>
+                {question.title}
+                </div>
+                <div className='question_date'>
+                {question.date}
+                </div>
+                <div className='question_image_div'>
+                <img src={question.image} id='question_image' ></img>
+                </div>
+                <div className='question_content'>
+                {question.content}
+                </div>
+                <div className='footer'>
+                </div>
+                </Content>
+            </div>
+            )
+        }
     }
 }
 
