@@ -8,7 +8,6 @@ Guinness
 
 # Tech Stack
 **Back-end** : DRF(Django Rest Framework)<br>
-**Front-end** : React
 
 ## Getting Started
 -가상환경 설치
