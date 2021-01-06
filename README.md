@@ -2,6 +2,7 @@
 
 ## Intro
 멋쟁이사자처럼 8기 질의응답 서비스입니다.
+![img](./likelion.png)
 
 # Developer
 Guinness
