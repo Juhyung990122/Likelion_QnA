@@ -1,14 +1,16 @@
 from django.urls import path,include
 from . import views
-from rest_framework.routers import DefaultRouter
+from rest_framework import routers
 from django.conf import settings
 from django.conf.urls.static import static
 
-router = DefaultRouter()
-router.register('question',views.QuestionVeiwSet)
+q_router = routers.DefaultRouter()
+q_router.register('',views.QuestionVeiwSet)
+
+a_router = routers.DefaultRouter()
+a_router.register('',views.AnswerViewSet,basename='Answer')
 
 urlpatterns = [
-    path('',include(router.urls)),
-    path('answer_list/<int:question_id>',views.Answer_list),
-    path('answer_create/<int:question_id>',views.Answer_create),
+    path('question/',include(q_router.urls)),
+    path('answer/',include(a_router.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

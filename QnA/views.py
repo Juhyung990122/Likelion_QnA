@@ -19,38 +19,35 @@ class QuestionVeiwSet(viewsets.ModelViewSet):
     def perform_create(self,serializer):
         serializer.save(author = self.request.user)
 
-
-
-@api_view(['GET'])
-def Answer_list(request,question_id):
-    #authentication_classes = [TokenAuthentication, SessionAuthentication]
-    #if request.user.is_authenticated:
-    if request.method == 'GET' :
-        queryset = Answer.objects.filter(question_num=question_id)
+class AnswerViewSet(viewsets.ModelViewSet):
+    def list(self,request):
+        #authentication_classes = [TokenAuthentication, SessionAuthentication]
+        #if request.user.is_authenticated:
+        queryset = Answer.objects.filter(question_num=request.data.get('question_num',''))
         serializer = AnswerSerializer(queryset, many = True)
         return Response(serializer.data, status = status.HTTP_201_CREATED)
-    else:
-        return Response(serializer.errors,status = status.HTTP_400_BAD_REQUEST)    
-    #else:
-        #return Response(status = status.HTTP_400_BAD_REQUEST)
-@api_view(['POST'])
-def Answer_create(request,question_id):
-    authentication_classes = [TokenAuthentication, SessionAuthentication]
-    '''{
-	"author":"user3",
-	"date":"null",
-	"question_num":"2",
-	"title": "answer",
-	"content": "answer"
-    } '''
-    if request.user.is_authenticated:
-        if request.method == 'POST' : #username 자동설정으로 변경하기!
-            q = Question.objects.get(pk=question_id)
-            serializer = AnswerSerializer(data = request.data)
-            if serializer.is_valid(raise_exception=True):
-                serializer.save(q, request.data)
-                return Response(serializer.data, status = status.HTTP_201_CREATED)
-            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)    
-    else:
-        return Response(status = status.HTTP_400_BAD_REQUEST)
+        
+        #else:
+            #return Response(status = status.HTTP_400_BAD_REQUEST)
+
+
+    def create(self,request):
+        authentication_classes = [TokenAuthentication, SessionAuthentication]
+        '''{
+        "author":"user3",
+        "date":"null",
+        "question_num":"0",
+        "title": "answer",
+        "content": "answer"
+        } '''
+       # if request.user.is_authenticated:
+        q = self.get_queryset()
+        q = Question.objects.get(pk=request.data.get('question_num',''))
+        serializer = AnswerSerializer(data = request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(q, request.data)
+            return Response(serializer.data, status = status.HTTP_201_CREATED)
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)    
+        #else:
+        #    return Response(status = status.HTTP_400_BAD_REQUEST)
 
