@@ -9,14 +9,15 @@ class MgmtUserSerializer(serializers.ModelSerializer):
 class LionUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = LionUser
-        fields = ('username','password','year','student_id','permission')
+        fields = ('username','year','student_id','permission')
 
     def create(self, validated_data):
         user = LionUser(
             username= validated_data['username'],
             student_id = validated_data['student_id'],
             year = validated_data['year'],
-            permission = validated_data['permission'])
+            permission = "True"
+            )
         user.set_password(validated_data['password'])
         user.save()
         return user
