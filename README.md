@@ -5,7 +5,7 @@
 ![img](./likelion.png)
 
 # Developer
-Guinness
+Summer
 
 # Tech Stack
 **Back-end** : DRF(Django Rest Framework)<br>
